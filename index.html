@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temptarure Converter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Mulish', sans-serif;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: #f8e7af;
+            display: grid;
+
+            justify-content: center;
+            margin-top: 16%;
+
+        }
+
+        .box {
+            height: 200px;
+            width: 500px;
+            background-color: #FF4B2B;
+            border-radius: 4px;
+            margin: 10px;
+            padding: 20px;
+            box-shadow: 5px 5px rgba(69, 65, 65, 0.863);
+          
+        }
+        label{
+          padding: 5%;
+            font-size: 1.1rem;
+        }
+
+        #temp {
+            width: 70px;
+            height: 20px;
+            margin-top: 20px;
+
+            right: 23px;
+            border: 1px solid #fff;
+            transform: translatex(200%);
+            border-radius: 5px;
+
+        }
+
+        #temp_diff {
+            width: 70px; 
+            height: 20px;
+            margin-top: 23px;
+            right: 20px;
+            border: none;
+            transform: translatex(200%);
+            border-radius: 5px;
+        }
+
+        #btn {
+            background-color: #000;
+            width: 65px;
+            height: 20px;
+            color: #fff;
+            margin-top: 14px;
+            transform: translatex(275%);
+            border-radius: 5px;
+        }
+        #resultContainer{
+            font-size: 1.1rem;
+            text-decoration: none;
+            padding: 33%;
+        }
+        #btn:hover{
+            background-color: burlywood;
+            color: #000;
+            border: none;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <form id="tempcalc" onsubmit="calculateTemp(); return false">
+            <label for="temp">Please enter the temprature you'd like to convert.</label><br>
+            <input type="number" name="temp" id="temp" placeholder="0" >
+            <select name="temp_diff" id="temp_diff">
+                <option value="cel">°Celsius</option>
+                <option value="fah">°Fahrenheit</option>
+            </select><br>
+            <button type="submit" name="temp" id="btn">Convert</button><br><br>
+            <span id="resultContainer"></span>
+        </form>
+    </div>
+
+    <script>
+        const calculateTemp = () => {
+            const numbertemp = document.getElementById('temp').value;
+            const tempselected = document.getElementById('temp_diff');
+
+            const valuetemp = temp_diff.options[tempselected.selectedIndex].value;
+
+            const celtofah = (cel) => {
+                let fahrenheit = Math.round((cel * 9 / 5) + 32);
+                return fahrenheit;
+            }
+
+            const fehtocel = (feh) => {
+                let celsius = Math.round((feh - 32) * 9 / 5);
+                return celsius;
+
+            }
+
+            let result;
+
+            if (valuetemp == 'cel') {
+                result = celtofah(numbertemp);
+                document.getElementById('resultContainer').innerHTML = `= ${result}°Fahrenheit`;
+            } else {
+
+                result = fehtocel(numbertemp);
+                document.getElementById('resultContainer').innerHTML = `= ${result}°Celsius`;
+            }
+        }
+    </script>
+</body>
+
+</html>
